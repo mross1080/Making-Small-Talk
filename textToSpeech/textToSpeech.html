@@ -1,0 +1,82 @@
+<html>
+
+<head>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+  <style>
+    body {
+      margin: 20px;
+      background-color: rgb(152, 200, 244);
+    }
+  </style>
+  <script>
+    let el;
+    let intervalsPassed = 0;
+    var voiceIndex;
+    var msg = new SpeechSynthesisUtterance();
+    var voices = window.speechSynthesis.getVoices();
+
+
+    msg.voice = voices[10]; // Note: some voices don't support altering params
+    msg.voiceURI = 'native';
+    msg.volume = 1; // 0 to 1
+    msg.rate = 0.7; // 0.1 to 10
+    msg.pitch = 1; //0 to 2
+
+    function userTouch() {
+      document.getElementById("demo").innerHTML = "Lets talk ";
+      document.getElementById("clickButton").style.display = "None"
+
+      pageInteracted = true;
+      msg.text = "Hello friend, it is nice to meet you"
+      msg.voice = voices[1]; // Note: some voices don't support altering params
+      msg.voiceURI = 'native';
+
+      speechSynthesis.speak(msg);
+
+    }
+
+
+    function speakText() {
+      var textAreaContent = document.getElementById("myTextarea").value;
+
+      msg.text = textAreaContent
+      msg.voice = voices[1]; // Note: some voices don't support altering params
+      msg.voiceURI = 'native';
+
+      speechSynthesis.speak(msg);
+
+
+    }
+    var comments = []
+  </script>
+</head>
+
+<body>
+
+  <div class="container">
+    <br><br><br><br><br><br><br><br><br><br><br><br>
+
+    <h2>Speech To Text Demo</h2>
+    <p>Lets Test The Functionality of Web Speech Synthesis</p>
+    <div class="card-body">
+      <button id="clickButton" onclick="userTouch()">Click Me To Begin</button>
+
+
+      <h3 id="demo"></h3>
+      <form>
+        
+        <textarea id="myTextarea" name="myTextarea" rows="4" cols="50">
+  </textarea>
+        <br><br>
+        <input type="submit" value="Speak!" onclick=speakText()>
+      </form>
+
+
+
+
+    </div>
+
+  </div>
+</body>
+
+</html>

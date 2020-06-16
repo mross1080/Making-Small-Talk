@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+
+<head>
+  <meta charset="utf-8">
+  <title></title>
+</head>
+
+<body>
+  <!-- <div class="float-center"> -->
+  <nav class="navbar navbar-expand-lg navbar-light bg-light">
+  <a class="navbar-brand" href="#">Speech Recognition Example</a>
+  </nav>
+  <div class='container'>
+  <form>
+    <input type="button" value="Click me" onclick="startRecognition()">
+  </form>
+
+  <p id="text"></p>
+
+  </div>
+  <!-- <div> -->
+</body>
+<script type="text/javascript">
+  if ('webkitSpeechRecognition' in window) {
+    // speech recognition API supported
+  } else {
+    // speech recognition API not supported
+  }
+
+
+
+  recognition = new webkitSpeechRecognition();
+  recognition.continuous = true;
+  recognition.interimResults = true;
+
+  recognition.onresult = function(event) {
+    var interim_transcript = '';
+    var final_transcript = '';
+    for (var i = event.resultIndex; i < event.results.length; ++i) {
+      if (event.results[i].isFinal) {
+        final_transcript += event.results[i][0].transcript;
+        console.log(final_transcript)
+
+        var newParagraph = document.createElement("p");
+        newParagraph.innerHTML = final_transcript; 
+        document.body.appendChild(newParagraph);
+
+
+      } else {
+        console.log(interim_transcript)
+        interim_transcript += event.results[i][0].transcript;
+      }
+    }
+    final_transcript = final_transcript;
+
+
+  };
+
+  function startRecognition() {
+
+    recognition.start();
+    document.getElementById('text').innerHTML = "Ready For Voice Recognition!"
+
+  }
+</script>
+
+</html>
