@@ -15,3 +15,11 @@ Then head over to
 `localhost:8000`
 
 in your browser and you will see a directory with all of the examples.  If you want to code along you can use the `start.html` boilerplate.  
+
+
+
+#### Links
+
+https://developers.google.com/web/updates/2014/01/Web-apps-that-talk-Introduction-to-the-Speech-Synthesis-API
+
+https://developer.mozilla.org/en-US/docs/Web/API/SpeechRecognition
