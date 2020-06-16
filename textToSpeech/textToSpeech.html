@@ -40,6 +40,21 @@
       var textAreaContent = document.getElementById("myTextarea").value;
 
       msg.text = textAreaContent
+
+
+      if (textAreaContent.includes("this")) {
+        console.log("yeah! ")
+        setInterval(function() {
+          console.log('here')
+          var commentIndex = Math.floor(Math.random() * comments.length);
+          var voiceComment = comments[commentIndex]
+          msg.text = voiceComment
+          msg.voice = voices[1]; // Note: some voices don't support altering params
+          msg.voiceURI = 'native';
+
+          speechSynthesis.speak(msg);
+        }, 1000);
+      }
       msg.voice = voices[1]; // Note: some voices don't support altering params
       msg.voiceURI = 'native';
 
@@ -47,7 +62,7 @@
 
 
     }
-    var comments = []
+    var comments = ["Why do you never ask what I want? ", "Matt Matt Matt Matt Matt Matt Matt Matt Matt ","You think just cause you wrote this code you're entitled to something?", "ugh you are so needy", "not really feeling it"]
   </script>
 </head>
 
@@ -63,13 +78,13 @@
 
 
       <h3 id="demo"></h3>
-      <form>
-        
-        <textarea id="myTextarea" name="myTextarea" rows="4" cols="50">
+      <!-- <form> -->
+
+      <textarea id="myTextarea" name="myTextarea" rows="4" cols="50">
   </textarea>
-        <br><br>
-        <input type="submit" value="Speak!" onclick=speakText()>
-      </form>
+      <br><br>
+      <input type="submit" value="Speak!" onclick=speakText()>
+      <!-- </form> -->
 
 
 
